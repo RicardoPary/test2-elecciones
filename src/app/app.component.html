@@ -1,4 +1,37 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div>
+
+  <p *ngIf="verifyVotos()">
+    TODOS YA VOTARON
+  </p>
+
+  <p>ELECCIONES</p>
+  <p>Votos: {{votos}}</p>
+  <p>Habilitados: {{habilitados.length}}</p>
+  <p>Inabilitados: {{inabilitados.length}}</p>
+
+	<p>MAYORES 65</p>
+
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let person of persons.mayores">
+			<persona
+       [nombre]="person.nombre"
+       [edad]="person.edad"
+       [habilitado]="person.habilitado"
+       (votar)="votar(person, 'mayores')">
+			</persona>
+		</div>
+	</div>
+
+	<p>MENORES 65</p>
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let person of persons.menores">
+			<persona
+       [nombre]="person.nombre"
+       [edad]="person.edad"
+       [habilitado]="person.habilitado"
+       (votar)="votar(person, 'menores')">
+			</persona>
+		</div>
+	</div>
+
+</div>
